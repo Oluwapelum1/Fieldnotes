@@ -1,0 +1,310 @@
+{
+  "sample": true,
+  "locales": {
+    "en": [
+      {
+        "id": "what-does-it-do",
+        "question": "What does it actually do?",
+        "answer": "It reads a messy support thread, spreadsheet export, or frustrated email, and turns it into a short notebook page: a summary, extracted decisions, open questions, and a numbered list of the steps it took.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "can-i-trust-output",
+        "question": "Can I trust the output?",
+        "answer": "Never blindly. Every sentence in an output card carries a green source chip pointing to the exact input line it came from, a dotted 'inferred' badge when it joined two facts, or a red-pencil 'check' bracket when a number or date is missing.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "where-does-data-go",
+        "question": "Where does my data go?",
+        "answer": "[Fill-in tied to Data Journey → Storage & Processing] Your selected text is sent over HTTPS (TLS 1.3) to your chosen region (Frankfurt, Oregon, or Tokyo) and stored for 30 days by default before automatic deletion.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "storage",
+        "sample": true
+      },
+      {
+        "id": "can-i-delete-data",
+        "question": "Can I delete my data?",
+        "answer": "[Fill-in tied to Data Journey → Deletion] Yes. Every saved run has a Delete button that removes it within 24 hours, or you can set workspace retention to 0 days so runs are never written to disk.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "deletion",
+        "sample": true
+      },
+      {
+        "id": "does-it-learn",
+        "question": "Does it learn from my data?",
+        "answer": "[Fill-in tied to Data Journey → Processing] No. Under our inference host configuration, customer inputs and outputs are never used to train or fine-tune shared models.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "processing",
+        "sample": true
+      },
+      {
+        "id": "which-languages-work",
+        "question": "Which languages work?",
+        "answer": "The interface and notebook steps support English, Spanish, German, Arabic (with right-to-left margins), and Japanese. You can also paste multilingual threads and inspect source quotes in their original script.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "what-will-it-cost",
+        "question": "What will it cost my team?",
+        "answer": "The Free plan is $0 for 1 person and 40 runs a month. Team is $19 per person a month (or $15.20 billed yearly at a 20% discount), and Business is $49 per person a month. Use the calculator above to test your own numbers.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "how-do-i-cancel",
+        "question": "How do I cancel?",
+        "answer": "Open Settings → Billing and click Cancel plan—two clicks total, no phone call or chat gate. If you ask within 14 days of a charge, we refund the current month.",
+        "isDataQuestion": false,
+        "sample": true
+      }
+    ],
+    "es": [
+      {
+        "id": "what-does-it-do",
+        "question": "¿Qué hace exactamente?",
+        "answer": "Lee un hilo de soporte desordenado, una hoja de gastos o un correo tenso y genera una página de cuaderno con resumen, decisiones, preguntas abiertas y los pasos seguidos.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "can-i-trust-output",
+        "question": "¿Puedo confiar en el resultado?",
+        "answer": "No a ciegas. Cada afirmación incluye una etiqueta de fuente hacia la línea original, una marca de 'inferido' o un corchete en lápiz rojo cuando falta un dato.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "where-does-data-go",
+        "question": "¿Adónde van mis datos?",
+        "answer": "[Campo vinculado al Recorrido de Datos → Almacenamiento] El texto seleccionado viaja por HTTPS (TLS 1.3) a la región elegida (Fráncfort, Oregón o Tokio) y se guarda 30 días por defecto.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "storage",
+        "sample": true
+      },
+      {
+        "id": "can-i-delete-data",
+        "question": "¿Puedo borrar mis datos?",
+        "answer": "[Campo vinculado al Recorrido de Datos → Eliminación] Sí. Puedes borrar cualquier ejecución en menos de 24 horas o configurar la retención en 0 días.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "deletion",
+        "sample": true
+      },
+      {
+        "id": "does-it-learn",
+        "question": "¿Entrena modelos con mis datos?",
+        "answer": "[Campo vinculado al Recorrido de Datos → Procesamiento] No. Tus textos y resultados no se utilizan para entrenar modelos compartidos.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "processing",
+        "sample": true
+      },
+      {
+        "id": "which-languages-work",
+        "question": "¿Qué idiomas funcionan?",
+        "answer": "Inglés, español, alemán, árabe (de derecha a izquierda) y japonés, conservando las citas en el idioma original.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "what-will-it-cost",
+        "question": "¿Cuánto le costará a mi equipo?",
+        "answer": "Gratis ($0, 40 ejecuciones/mes), Team ($19 por persona/mes o $15.20 anual) y Business ($49 por persona/mes).",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "how-do-i-cancel",
+        "question": "¿Cómo cancelo?",
+        "answer": "En Ajustes → Facturación con dos clics. Reembolsamos el mes en curso si lo solicitas dentro de los primeros 14 días.",
+        "isDataQuestion": false,
+        "sample": true
+      }
+    ],
+    "de": [
+      {
+        "id": "what-does-it-do",
+        "question": "Was macht das Produkt konkret?",
+        "answer": "Es liest unübersichtliche Support-Threads, Spesendateien oder schwierige E-Mails und erstellt eine Notizbuchseite mit Zusammenfassung, Entscheidungen, offenen Fragen und allen Zwischenschritten.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "can-i-trust-output",
+        "question": "Kann ich der Ausgabe vertrauen?",
+        "answer": "Bitte prüfen Sie wichtige Stellen. Jede Aussage trägt einen Quellen-Chip zur Originalzeile, ein 'abgeleitet'-Etikett oder eine Rotstift-Klammer für fehlende Angaben.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "where-does-data-go",
+        "question": "Wohin fließen meine Daten?",
+        "answer": "[Ausfüllfeld gekoppelt an Datenweg → Speicherung] Ausgewählter Text wird per TLS 1.3 in Ihre gewählte Region (Frankfurt, Oregon oder Tokio) übertragen und standardmäßig nach 30 Tagen gelöscht.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "storage",
+        "sample": true
+      },
+      {
+        "id": "can-i-delete-data",
+        "question": "Kann ich meine Daten löschen?",
+        "answer": "[Ausfüllfeld gekoppelt an Datenweg → Löschung] Ja. Jeder Lauf lässt sich binnen 24 Stunden löschen oder per 0-Tage-Modus ganz ohne Speicherung ausführen.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "deletion",
+        "sample": true
+      },
+      {
+        "id": "does-it-learn",
+        "question": "Lernt das Modell aus meinen Daten?",
+        "answer": "[Ausfüllfeld gekoppelt an Datenweg → Verarbeitung] Nein. Kundeneingaben werden nicht zum Training gemeinsamer Modelle verwendet.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "processing",
+        "sample": true
+      },
+      {
+        "id": "which-languages-work",
+        "question": "Welche Sprachen werden unterstützt?",
+        "answer": "Englisch, Spanisch, Deutsch, Arabisch (Rechts-nach-links) und Japanisch.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "what-will-it-cost",
+        "question": "Was kostet es für mein Team?",
+        "answer": "Free kostet 0 $, Team 19 $ pro Person/Monat (15,20 $ bei jährlicher Zahlung) und Business 49 $ pro Person/Monat.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "how-do-i-cancel",
+        "question": "Wie kann ich kündigen?",
+        "answer": "Mit zwei Klicks unter Einstellungen → Abrechnung. Innerhalb von 14 Tagen erstatten wir den laufenden Monat auf Anfrage zurück.",
+        "isDataQuestion": false,
+        "sample": true
+      }
+    ],
+    "ar": [
+      {
+        "id": "what-does-it-do",
+        "question": "ماذا يفعل البرنامج تحديداً؟",
+        "answer": "يقرأ سلاسل رسائل الدعم أو جداول المصروفات أو الرسائل المعقدة ويحولها إلى صفحة دفتر منظمة تتضمن الملخص والقرارات والأسئلة المفتوحة والخطوات المتبعة.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "can-i-trust-output",
+        "question": "هل يمكنني الوثوق بالنتائج؟",
+        "answer": "تحقق دائماً من الأمور المهمة. كل جملة تحمل شريحة مصدر تشير للسطر الأصلي، أو علامة استنتاج، أو قوساً بالقلم الأحمر عند نقص المعلومات.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "where-does-data-go",
+        "question": "أين تذهب بياناتي؟",
+        "answer": "[حقل مرتبط بمسار البيانات ← التخزين] تُرسل النصوص المحددة عبر TLS 1.3 إلى المنطقة التي تختارها (فرانكفورت أو أوريغون أو طوكيو) وتُحفظ لمدة 30 يوماً افتراضياً.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "storage",
+        "sample": true
+      },
+      {
+        "id": "can-i-delete-data",
+        "question": "هل يمكنني حذف بياناتي؟",
+        "answer": "[حقل مرتبط بمسار البيانات ← الحذف] نعم، يمكنك حذف أي مهمة خلال 24 ساعة أو ضبط الاحتفاظ على 0 يوم لعدم التخزين.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "deletion",
+        "sample": true
+      },
+      {
+        "id": "does-it-learn",
+        "question": "هل يتعلم النموذج من بياناتي؟",
+        "answer": "[حقل مرتبط بمسار البيانات ← المعالجة] لا، لا تُستخدم مدخلاتك لتدريب النماذج المشتركة.",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "processing",
+        "sample": true
+      },
+      {
+        "id": "which-languages-work",
+        "question": "ما اللغات المدعومة؟",
+        "answer": "الإنجليزية والإسبانية والألمانية والعربية (بتخطيط كامل من اليمين إلى اليسار) واليابانية.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "what-will-it-cost",
+        "question": "كم سيكلف فريقي؟",
+        "answer": "الخطة المجانية بـ 0 دولار، وخطة الفريق بـ 19 دولاراً للفرد شهرياً (أو 15.20 دولاراً سنوياً)، وخطة الأعمال بـ 49 دولاراً للفرد شهرياً.",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "how-do-i-cancel",
+        "question": "كيف ألغي الاشتراك؟",
+        "answer": "بنقرتين من الإعدادات ← الفوترة، مع استرداد قيمة الشهر الحالي إذا طلبت ذلك خلال 14 يوماً.",
+        "isDataQuestion": false,
+        "sample": true
+      }
+    ],
+    "ja": [
+      {
+        "id": "what-does-it-do",
+        "question": "具体的に何をするツールですか？",
+        "answer": "複雑なサポートスレッドや経費シート、対応に迷うメールを読み取り、要約・決定事項・未解決の質問・処理ステップを1枚のノートに整理します。",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "can-i-trust-output",
+        "question": "出力結果をそのまま信頼できますか？",
+        "answer": "重要な数値は必ず確認してください。すべての文に元の行を示すソースチップ、「推論」ラベル、または不足情報を示す赤鉛筆の括弧が付きます。",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "where-does-data-go",
+        "question": "データはどこに送られますか？",
+        "answer": "[データジャーニー → 保存に連動] 選択したテキストのみがTLS 1.3で指定リージョン（東京・フランクフルト・オレゴン）へ送られ、既定で30日後に自動削除されます。",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "storage",
+        "sample": true
+      },
+      {
+        "id": "can-i-delete-data",
+        "question": "データを自分で削除できますか？",
+        "answer": "[データジャーニー → 削除に連動] はい。削除ボタンから24時間以内に消去できるほか、保存期間を0日（ステートレス）に設定することも可能です。",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "deletion",
+        "sample": true
+      },
+      {
+        "id": "does-it-learn",
+        "question": "入力データはAIの学習に使われますか？",
+        "answer": "[データジャーニー → 処理に連動] いいえ。お客様の入力や出力が共有モデルの学習に使われることはありません。",
+        "isDataQuestion": true,
+        "dataJourneyNodeRef": "processing",
+        "sample": true
+      },
+      {
+        "id": "which-languages-work",
+        "question": "どの言語に対応していますか？",
+        "answer": "日本語、英語、スペイン語、ドイツ語、アラビア語（右横書きレイアウト）に対応しています。",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "what-will-it-cost",
+        "question": "チームの費用はいくらになりますか？",
+        "answer": "Freeプランは0ドル、Teamは1人あたり月額19ドル（年払いで月あたり15.20ドル）、Businessは月額49ドルです。",
+        "isDataQuestion": false,
+        "sample": true
+      },
+      {
+        "id": "how-do-i-cancel",
+        "question": "解約はどのように行いますか？",
+        "answer": "設定 → 請求から2クリックで解約できます。決済後14日以内にご連絡いただければ当月分を返金します。",
+        "isDataQuestion": false,
+        "sample": true
+      }
+    ]
+  }
+}

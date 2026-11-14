@@ -1,0 +1,300 @@
+[
+  {
+    "id": "thread-summary",
+    "chipLabel": "Resumir un hilo de soporte",
+    "title": "Hilo de una clienta sobre el cobro de una licencia adicional",
+    "inputBlocks": [
+      {
+        "id": "m1",
+        "author": "Maya (clienta)",
+        "text": "Nuestra factura muestra 4 licencias pero solo compramos 3. Además, el botón de exportar vuelve a fallar.",
+        "attended": true
+      },
+      {
+        "id": "m2",
+        "author": "Tom (soporte)",
+        "text": "¡Disculpa Maya! Revisando con facturación.",
+        "attended": false
+      },
+      {
+        "id": "m3",
+        "author": "Maya (clienta)",
+        "text": "¿Alguna novedad? Nuestra renovación es el día 14.",
+        "attended": true
+      },
+      {
+        "id": "m4",
+        "author": "Tom (soporte)",
+        "text": "Facturación dice que 4 licencias es correcto; añadisteis una en marzo.",
+        "attended": true
+      },
+      {
+        "id": "m5",
+        "author": "Maya (clienta)",
+        "text": "Nadie añadió una licencia. Revisad el registro de auditoría, por favor. Y exportar sigue roto en Firefox.",
+        "attended": true
+      },
+      {
+        "id": "m6",
+        "author": "Priya (facturación)",
+        "text": "Encontrado: j.ortiz añadió una licencia el 9 de marzo. Reembolsaremos 1 licencia de marzo a mayo. El fallo de exportación está identificado y se corrige esta semana.",
+        "attended": true
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Lectura",
+        "detail": "6 mensajes de 3 personas",
+        "durationLabel": "0.6s",
+        "reads": ["m1", "m2", "m3", "m4", "m5", "m6"],
+        "produces": []
+      },
+      {
+        "id": "s2",
+        "label": "Agrupación por tema",
+        "detail": "Disputa de facturación separada del error en Firefox",
+        "durationLabel": "0.5s",
+        "reads": ["m1", "m4", "m5", "m6"],
+        "produces": ["summary"]
+      },
+      {
+        "id": "s3",
+        "label": "2 decisiones extraídas",
+        "detail": "Reembolso de 3 meses y corrección esta semana",
+        "durationLabel": "0.7s",
+        "reads": ["m5", "m6"],
+        "produces": ["decisions"]
+      },
+      {
+        "id": "s4",
+        "label": "Fechas y datos ausentes",
+        "detail": "Renovación el 14, alta el 9 de marzo; falta importe exacto",
+        "durationLabel": "0.8s",
+        "reads": ["m3", "m4", "m6"],
+        "produces": ["open-questions"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "summary",
+        "title": "Resumen",
+        "segments": [
+          {
+            "text": "La clienta reclamó el cobro de una cuarta licencia en su factura.",
+            "sources": ["m1", "m5"],
+            "claimType": "sourced",
+            "stepId": "s2"
+          },
+          {
+            "text": "Facturación vio en el registro que j.ortiz añadió una licencia el 9 de marzo y acordó reembolsar tres meses.",
+            "sources": ["m6"],
+            "claimType": "sourced",
+            "stepId": "s2"
+          }
+        ]
+      },
+      {
+        "id": "decisions",
+        "title": "Decisiones",
+        "segments": [
+          {
+            "text": "Reembolsar 1 licencia de marzo a mayo antes de la renovación del día 14.",
+            "sources": ["m3", "m6"],
+            "claimType": "sourced",
+            "stepId": "s3"
+          },
+          {
+            "text": "Publicar la corrección de exportación en Firefox esta semana.",
+            "sources": ["m5", "m6"],
+            "claimType": "sourced",
+            "stepId": "s3"
+          }
+        ]
+      },
+      {
+        "id": "open-questions",
+        "title": "Preguntas abiertas",
+        "segments": [
+          {
+            "text": "¿Quién autorizó a j.ortiz a añadir la licencia el 9 de marzo?",
+            "sources": ["m5", "m6"],
+            "claimType": "inferred",
+            "stepId": "s4"
+          },
+          {
+            "text": "¿Cuál es el importe monetario exacto del reembolso?",
+            "sources": ["m6"],
+            "claimType": "unknown",
+            "stepId": "s4"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "c1",
+        "text": "Comprobar: el importe exacto del reembolso no figura en ningún mensaje del hilo.",
+        "relatedBlocks": ["m6"],
+        "conflictNote": "Tom afirmó que el cobro era correcto antes de revisar el registro de auditoría."
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "Saludos y disculpas iniciales",
+        "reason": "Sin decisiones ni datos verificables"
+      }
+    ],
+    "sampleRunSeconds": 3.1,
+    "sample": true
+  },
+  {
+    "id": "expense-cleanup",
+    "chipLabel": "Limpiar hoja de gastos",
+    "title": "Cinco filas desordenadas de gastos de viaje",
+    "inputBlocks": [
+      {
+        "id": "e1",
+        "author": "Fila 14 · A. Lindqvist",
+        "text": "2026-09-12 | Tren Berlín–Múnich | 118,40 € | Recibo PDF adjunto",
+        "attended": true
+      },
+      {
+        "id": "e2",
+        "author": "Fila 15 · A. Lindqvist",
+        "text": "12/09/26 | DB Fernverkehr Berlín | 118,40 € | Cargo de tarjeta",
+        "attended": true
+      },
+      {
+        "id": "e3",
+        "author": "Fila 16 · M. Okafor",
+        "text": "2026-09-14 | Hotel Viktoria (2 noches) | 340,00 € | Con desayuno",
+        "attended": true
+      },
+      {
+        "id": "e4",
+        "author": "Fila 17 · M. Okafor",
+        "text": "2026-09-15 | Cena con cliente | 195 | Sin divisa ni factura de IVA",
+        "attended": true
+      }
+    ],
+    "steps": [
+      {
+        "id": "es1",
+        "label": "Lectura de filas",
+        "detail": "4 filas de 2 empleados",
+        "durationLabel": "0.5s",
+        "reads": ["e1", "e2", "e3", "e4"],
+        "produces": []
+      },
+      {
+        "id": "es2",
+        "label": "Duplicados y recibos",
+        "detail": "Detectado duplicado de 118,40 € y fila sin divisa",
+        "durationLabel": "0.7s",
+        "reads": ["e1", "e2", "e3", "e4"],
+        "produces": ["clean-totals", "needs-review"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "clean-totals",
+        "title": "Gastos verificados",
+        "segments": [
+          {
+            "text": "458,40 € aprobados (tren 118,40 € + hotel 340,00 €) tras fusionar la fila 15 duplicada.",
+            "sources": ["e1", "e2", "e3"],
+            "claimType": "sourced",
+            "stepId": "es2"
+          }
+        ]
+      },
+      {
+        "id": "needs-review",
+        "title": "Fila retenida",
+        "segments": [
+          {
+            "text": "La fila 17 ('195') carece de código de moneda y recibo de IVA.",
+            "sources": ["e4"],
+            "claimType": "unknown",
+            "stepId": "es2"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "ec1",
+        "text": "Comprobar: la fila 17 indica '195' sin moneda ni recibo fiscal.",
+        "relatedBlocks": ["e4"]
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "Separadores de macro",
+        "reason": "Sin importes contables"
+      }
+    ],
+    "sampleRunSeconds": 2.8,
+    "sample": true
+  },
+  {
+    "id": "draft-reply",
+    "chipLabel": "Redactar respuesta clara",
+    "title": "Respuesta tras un retraso de 40 minutos en webhooks",
+    "inputBlocks": [
+      {
+        "id": "r1",
+        "author": "D. Vance (cliente)",
+        "text": "Vuestra cola de webhooks se detuvo 40 minutos y perdimos 18 albaranes. No quiero disculpas genéricas: decidme qué pasó y si se reenviaron.",
+        "attended": true
+      },
+      {
+        "id": "r2",
+        "author": "Registro #409",
+        "text": "08:12–08:51 UTC: saturación en grupo UE. Los 18 eventos se entregaron a las 08:53 UTC (200 OK). Umbral de alerta bajado de 60 a 5 min.",
+        "attended": true
+      }
+    ],
+    "steps": [
+      {
+        "id": "rs1",
+        "label": "Análisis y tono",
+        "detail": "Respuesta directa sin disculpas vacías",
+        "durationLabel": "0.6s",
+        "reads": ["r1", "r2"],
+        "produces": ["draft-body"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "draft-body",
+        "title": "Borrador directo",
+        "segments": [
+          {
+            "text": "Entre las 08:12 y 08:51 UTC se saturó el grupo de webhooks UE; los 18 albaranes se entregaron a las 08:53 UTC con código 200 OK y bajamos el umbral de alerta a 5 minutos.",
+            "sources": ["r1", "r2"],
+            "claimType": "sourced",
+            "stepId": "rs1"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "rc1",
+        "text": "Comprobar: 200 OK confirma la recepción del servidor, no la impresión física del albarán #18.",
+        "relatedBlocks": ["r2"]
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "Fórmulas de cortesía genéricas",
+        "reason": "El cliente pidió explícitamente hechos directos"
+      }
+    ],
+    "sampleRunSeconds": 2.9,
+    "sample": true
+  }
+]
+

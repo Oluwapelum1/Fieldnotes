@@ -1,0 +1,36 @@
+{
+  "baseCurrency": "USD",
+  "asOfDate": "2026-11-01",
+  "sample": true,
+  "currencies": [
+    {
+      "code": "USD",
+      "symbol": "$",
+      "name": "US Dollar (USD)",
+      "rateFromBase": 1,
+      "decimals": 2
+    },
+    {
+      "code": "EUR",
+      "symbol": "€",
+      "name": "Euro (EUR)",
+      "rateFromBase": 0.92,
+      "decimals": 2
+    },
+    {
+      "code": "GBP",
+      "symbol": "£",
+      "name": "British Pound (GBP)",
+      "rateFromBase": 0.78,
+      "decimals": 2
+    },
+    {
+      "code": "JPY",
+      "symbol": "¥",
+      "name": "Japanese Yen (JPY)",
+      "rateFromBase": 150,
+      "decimals": 0
+    }
+  ]
+}
+

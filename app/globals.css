@@ -1,0 +1,92 @@
+/* app/globals.css — Global stylesheet importing Tailwind CSS v4, Fieldnotes tokens, graph-paper grid, and highlighter stripe */
+@import "tailwindcss";
+@import "../config/tokens.css";
+
+@layer base {
+  html {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    background-color: var(--color-page);
+    color: var(--color-ink);
+  }
+
+  /* 24px engineering graph-paper grid drawn on a single fixed pseudo-element that never repaints on scroll (Part 2.3) */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, var(--color-grid-major) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-grid-major) 1px, transparent 1px),
+      linear-gradient(to right, var(--color-grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-grid-line) 1px, transparent 1px);
+    background-size:
+      120px 120px,
+      120px 120px,
+      24px 24px,
+      24px 24px;
+  }
+
+  /* Optional desktop pointer spotlight grid (160px radius, off on touch, Calm, and Off) */
+  html[data-motion="full"] body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, var(--color-ink-blue-soft) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-ink-blue-soft) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: radial-gradient(
+      160px circle at var(--spotlight-x, -999px) var(--spotlight-y, -999px),
+      rgba(0, 0, 0, 0.9),
+      transparent 100%
+    );
+  }
+}
+
+/* Skewed lower-55% marker highlighter stripe animating from 0 to 100% width behind text (Part 2.3 & 2.5) */
+.fn-highlighter {
+  background-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    var(--color-marker) 2%,
+    var(--color-marker) 98%,
+    transparent 100%
+  );
+  background-repeat: no-repeat;
+  background-position: 0 88%;
+  background-size: 0% 55%;
+  transition: background-size var(--duration-highlight) var(--ease-ink);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.fn-highlighter.is-active {
+  background-size: 100% 55%;
+}
+
+/* Keyframes for SVG hand-drawn annotation stroke draw-on */
+@keyframes fn-draw-stroke {
+  from {
+    stroke-dashoffset: 600;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+

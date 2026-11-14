@@ -1,0 +1,292 @@
+[
+  {
+    "id": "thread-summary",
+    "chipLabel": "Kunden-Thread zusammenfassen",
+    "title": "Kunden-Thread über eine strittige vierte Lizenzgebühr",
+    "inputBlocks": [
+      {
+        "id": "m1",
+        "author": "Maya (Kundin)",
+        "text": "Unsere Rechnung weist 4 Plätze aus, wir haben aber nur 3 gekauft. Außerdem funktioniert der Export-Button wieder nicht.",
+        "attended": true
+      },
+      {
+        "id": "m2",
+        "author": "Tom (Support)",
+        "text": "Entschuldigung Maya! Ich frage bei der Buchhaltung nach.",
+        "attended": false
+      },
+      {
+        "id": "m3",
+        "author": "Maya (Kundin)",
+        "text": "Gibt es Neuigkeiten? Unsere Verlängerung steht am 14. an.",
+        "attended": true
+      },
+      {
+        "id": "m4",
+        "author": "Tom (Support)",
+        "text": "Laut Buchhaltung sind 4 Plätze korrekt, Sie haben im März einen hinzugefügt.",
+        "attended": true
+      },
+      {
+        "id": "m5",
+        "author": "Maya (Kundin)",
+        "text": "Niemand hat einen Platz hinzugefügt. Bitte prüfen Sie das Audit-Protokoll. Und der Export in Firefox streikt weiterhin.",
+        "attended": true
+      },
+      {
+        "id": "m6",
+        "author": "Priya (Buchhaltung)",
+        "text": "Gefunden: Ein Platz wurde am 9. März von j.ortiz angelegt. Wir erstatten 1 Platz für März bis Mai. Der Firefox-Exportfehler wird diese Woche behoben.",
+        "attended": true
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Gelesen",
+        "detail": "6 Nachrichten von 3 Personen",
+        "durationLabel": "0.6s",
+        "reads": ["m1", "m2", "m3", "m4", "m5", "m6"],
+        "produces": []
+      },
+      {
+        "id": "s2",
+        "label": "Nach Thema gruppiert",
+        "detail": "Lizenzabrechnung und Firefox-Fehler getrennt",
+        "durationLabel": "0.5s",
+        "reads": ["m1", "m4", "m5", "m6"],
+        "produces": ["summary"]
+      },
+      {
+        "id": "s3",
+        "label": "2 Entscheidungen extrahiert",
+        "detail": "Erstattung für 3 Monate und Bugfix diese Woche",
+        "durationLabel": "0.7s",
+        "reads": ["m5", "m6"],
+        "produces": ["decisions"]
+      },
+      {
+        "id": "s4",
+        "label": "Termine & Lücken geprüft",
+        "detail": "Verlängerung am 14., Anlage 9. März; Erstattungsbetrag fehlt",
+        "durationLabel": "0.8s",
+        "reads": ["m3", "m4", "m6"],
+        "produces": ["open-questions"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "summary",
+        "title": "Zusammenfassung",
+        "segments": [
+          {
+            "text": "Die Kundin widersprach der Berechnung eines vierten Arbeitsplatzes auf ihrer Rechnung.",
+            "sources": ["m1", "m5"],
+            "claimType": "sourced",
+            "stepId": "s2"
+          },
+          {
+            "text": "Die Buchhaltung fand im Audit-Protokoll eine Buchung durch j.ortiz am 9. März und sagte eine Erstattung für drei Monate zu.",
+            "sources": ["m6"],
+            "claimType": "sourced",
+            "stepId": "s2"
+          }
+        ]
+      },
+      {
+        "id": "decisions",
+        "title": "Entscheidungen",
+        "segments": [
+          {
+            "text": "Erstattung von 1 Platz für März bis Mai vor der Verlängerung am 14.",
+            "sources": ["m3", "m6"],
+            "claimType": "sourced",
+            "stepId": "s3"
+          },
+          {
+            "text": "Behebung des Firefox-Exportfehlers noch in dieser Woche.",
+            "sources": ["m5", "m6"],
+            "claimType": "sourced",
+            "stepId": "s3"
+          }
+        ]
+      },
+      {
+        "id": "open-questions",
+        "title": "Offene Fragen",
+        "segments": [
+          {
+            "text": "Wer hat j.ortiz am 9. März zur Buchung des Platzes berechtigt?",
+            "sources": ["m5", "m6"],
+            "claimType": "inferred",
+            "stepId": "s4"
+          },
+          {
+            "text": "Wie hoch ist der genaue Erstattungsbetrag für März bis Mai?",
+            "sources": ["m6"],
+            "claimType": "unknown",
+            "stepId": "s4"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "c1",
+        "text": "Prüfen: Der genaue Euro- oder Dollar-Erstattungsbetrag wird im Thread nirgends genannt.",
+        "relatedBlocks": ["m6"],
+        "conflictNote": "Tom bestätigte die Rechnung als korrekt, bevor das Audit-Protokoll geprüft wurde."
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "Begrüßungen und Zwischenantworten",
+        "reason": "Keine Fakten oder Entscheidungen"
+      }
+    ],
+    "sampleRunSeconds": 3.1,
+    "sample": true
+  },
+  {
+    "id": "expense-cleanup",
+    "chipLabel": "Spesentabelle bereinigen",
+    "title": "Reisekostenabrechnung mit Dubletten und fehlender Währung",
+    "inputBlocks": [
+      {
+        "id": "e1",
+        "author": "Zeile 14 · A. Lindqvist",
+        "text": "2026-09-12 | Bahnticket Berlin–München | 118,40 € | PDF-Beleg",
+        "attended": true
+      },
+      {
+        "id": "e2",
+        "author": "Zeile 15 · A. Lindqvist",
+        "text": "12.09.26 | DB Fernverkehr Berlin | 118,40 € | Kartenumsatz",
+        "attended": true
+      },
+      {
+        "id": "e3",
+        "author": "Zeile 16 · M. Okafor",
+        "text": "2026-09-14 | Hotel Viktoria (2 Nächte) | 340,00 € | Inkl. Frühstück",
+        "attended": true
+      },
+      {
+        "id": "e4",
+        "author": "Zeile 17 · M. Okafor",
+        "text": "2026-09-15 | Geschäftsessen | 195 | Keine Währung, kein Bewirtungsbeleg",
+        "attended": true
+      }
+    ],
+    "steps": [
+      {
+        "id": "es1",
+        "label": "Zeilen geprüft",
+        "detail": "Dublette in Zeile 15 und fehlender Beleg in Zeile 17 erkannt",
+        "durationLabel": "0.6s",
+        "reads": ["e1", "e2", "e3", "e4"],
+        "produces": ["clean-totals", "needs-review"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "clean-totals",
+        "title": "Geprüfte Spesen",
+        "segments": [
+          {
+            "text": "458,40 € freigegeben (118,40 € Bahn + 340,00 € Hotel); Zeile 15 als Dublette zusammengeführt.",
+            "sources": ["e1", "e2", "e3"],
+            "claimType": "sourced",
+            "stepId": "es1"
+          }
+        ]
+      },
+      {
+        "id": "needs-review",
+        "title": "Rückfrage erforderlich",
+        "segments": [
+          {
+            "text": "Zeile 17 ('195') enthält weder Währungsangabe noch Bewirtungsbeleg.",
+            "sources": ["e4"],
+            "claimType": "unknown",
+            "stepId": "es1"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "ec1",
+        "text": "Prüfen: Zeile 17 nennt '195' ohne Währungssymbol.",
+        "relatedBlocks": ["e4"]
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "Makro-Trennzeilen",
+        "reason": "Keine Buchungsdaten"
+      }
+    ],
+    "sampleRunSeconds": 2.8,
+    "sample": true
+  },
+  {
+    "id": "draft-reply",
+    "chipLabel": "Sachliche Antwort entwerfen",
+    "title": "Antwort auf Kundenbeschwerde nach Webhook-Verzögerung",
+    "inputBlocks": [
+      {
+        "id": "r1",
+        "author": "D. Vance (Kunde)",
+        "text": "Ihre Webhook-Warteschlange hing 40 Minuten fest, 18 Lieferscheine fehlten. Bitte keine Textbausteine, sondern Ursache und Status der 18 Scheine.",
+        "attended": true
+      },
+      {
+        "id": "r2",
+        "author": "Vorfall #409",
+        "text": "08:12–08:51 UTC: EU-Pool ausgelastet. Alle 18 Events um 08:53 UTC mit 200 OK zugestellt. Alarmschwelle von 60 auf 5 Min. gesenkt.",
+        "attended": true
+      }
+    ],
+    "steps": [
+      {
+        "id": "rs1",
+        "label": "Fakten zugeordnet",
+        "detail": "Ursache, Zustellzeit 08:53 UTC und 5-Minuten-Alarm verknüpft",
+        "durationLabel": "0.6s",
+        "reads": ["r1", "r2"],
+        "produces": ["draft-body"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "draft-body",
+        "title": "Antwortentwurf",
+        "segments": [
+          {
+            "text": "Zwischen 08:12 und 08:51 UTC war unser EU-Webhook-Pool überlastet; alle 18 Lieferscheine wurden um 08:53 UTC mit Status 200 OK zugestellt und die Alarmschwelle auf 5 Minuten gesenkt.",
+            "sources": ["r1", "r2"],
+            "claimType": "sourced",
+            "stepId": "rs1"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "rc1",
+        "text": "Prüfen: Status 200 OK bestätigt die Serverzustellung, nicht den lokalen Ausdruck von Schein #18.",
+        "relatedBlocks": ["r2"]
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "Standard-Entschuldigungsfloskeln",
+        "reason": "Kunde wünschte ausdrücklich reine Fakten"
+      }
+    ],
+    "sampleRunSeconds": 2.9,
+    "sample": true
+  }
+]
+

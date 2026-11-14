@@ -1,0 +1,386 @@
+[
+  {
+    "id": "thread-summary",
+    "chipLabel": "Summarise a customer thread",
+    "title": "A customer thread about an extra seat charge",
+    "inputBlocks": [
+      {
+        "id": "m1",
+        "author": "Maya (customer)",
+        "text": "Our invoice shows 4 seats but we only bought 3. Also the export button is broken again.",
+        "attended": true
+      },
+      {
+        "id": "m2",
+        "author": "Tom (support)",
+        "text": "Sorry Maya! Checking billing.",
+        "attended": false
+      },
+      {
+        "id": "m3",
+        "author": "Maya (customer)",
+        "text": "Any news? Our renewal is on the 14th.",
+        "attended": true
+      },
+      {
+        "id": "m4",
+        "author": "Tom (support)",
+        "text": "Billing says 4 seats is correct, you added one in March.",
+        "attended": true
+      },
+      {
+        "id": "m5",
+        "author": "Maya (customer)",
+        "text": "Nobody added a seat. Check the audit log please. Also export is still broken on Firefox.",
+        "attended": true
+      },
+      {
+        "id": "m6",
+        "author": "Priya (billing)",
+        "text": "Found it: a seat was added by j.ortiz on 9 March. We'll refund 1 seat for March to May. The export bug is known and the fix is due this week.",
+        "attended": true
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "label": "Read",
+        "detail": "6 messages from 3 people",
+        "durationLabel": "0.6s",
+        "reads": ["m1", "m2", "m3", "m4", "m5", "m6"],
+        "produces": []
+      },
+      {
+        "id": "s2",
+        "label": "Grouped by topic",
+        "detail": "Separated billing seat dispute from Firefox export bug",
+        "durationLabel": "0.5s",
+        "reads": ["m1", "m4", "m5", "m6"],
+        "produces": ["summary"]
+      },
+      {
+        "id": "s3",
+        "label": "Extracted 2 decisions",
+        "detail": "Matched billing resolution and engineering bug schedule",
+        "durationLabel": "0.7s",
+        "reads": ["m5", "m6"],
+        "produces": ["decisions"]
+      },
+      {
+        "id": "s4",
+        "label": "Checked dates & gaps",
+        "detail": "Renewal 14th, seat added 9 March, refund March–May; flagged missing refund figure",
+        "durationLabel": "0.8s",
+        "reads": ["m3", "m4", "m6"],
+        "produces": ["open-questions"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "summary",
+        "title": "Summary",
+        "segments": [
+          {
+            "text": "The customer disputed an extra seat charge on their 4-seat invoice.",
+            "sources": ["m1", "m5"],
+            "claimType": "sourced",
+            "stepId": "s2"
+          },
+          {
+            "text": "Billing found a seat added by j.ortiz on the customer's team on 9 March and agreed to refund one seat for three months.",
+            "sources": ["m6"],
+            "claimType": "sourced",
+            "stepId": "s2"
+          }
+        ]
+      },
+      {
+        "id": "decisions",
+        "title": "Decisions",
+        "segments": [
+          {
+            "text": "Refund 1 seat for March to May ahead of the renewal on the 14th.",
+            "sources": ["m3", "m6"],
+            "claimType": "sourced",
+            "stepId": "s3"
+          },
+          {
+            "text": "Ship the Firefox export bug fix this week.",
+            "sources": ["m5", "m6"],
+            "claimType": "sourced",
+            "stepId": "s3"
+          }
+        ]
+      },
+      {
+        "id": "open-questions",
+        "title": "Open questions",
+        "segments": [
+          {
+            "text": "Who on the customer's team authorised j.ortiz to add the seat on 9 March?",
+            "sources": ["m5", "m6"],
+            "claimType": "inferred",
+            "stepId": "s4"
+          },
+          {
+            "text": "What is the exact dollar refund amount for March to May?",
+            "sources": ["m6"],
+            "claimType": "unknown",
+            "stepId": "s4"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "c1",
+        "text": "Check: the refund amount isn't stated anywhere in the thread.",
+        "relatedBlocks": ["m6"],
+        "conflictNote": "Tom said billing was correct before the audit log was checked."
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "Greetings and apologies ('Sorry Maya! Checking billing.')",
+        "reason": "No decisions or facts"
+      }
+    ],
+    "sampleRunSeconds": 3.1,
+    "sample": true
+  },
+  {
+    "id": "expense-cleanup",
+    "chipLabel": "Clean an expense sheet",
+    "title": "Six messy rows from a Q3 team travel spreadsheet",
+    "inputBlocks": [
+      {
+        "id": "e1",
+        "author": "Row 14 · A. Lindqvist",
+        "text": "2026-09-12 | Bahn Ticket Berlin–Munich | €118.40 | Receipt PDF attached",
+        "attended": true
+      },
+      {
+        "id": "e2",
+        "author": "Row 15 · A. Lindqvist",
+        "text": "12/09/26 | DB Fernverkehr Berlin | €118.40 | Card charge import",
+        "attended": true
+      },
+      {
+        "id": "e3",
+        "author": "Row 16 · M. Okafor",
+        "text": "2026-09-14 | Hotel Viktoria (2 nights) | €340.00 | Includes breakfast",
+        "attended": true
+      },
+      {
+        "id": "e4",
+        "author": "Row 17 · M. Okafor",
+        "text": "2026-09-15 | Client dinner — 4 guests | 195 | No currency symbol, no VAT receipt",
+        "attended": true
+      },
+      {
+        "id": "e5",
+        "author": "Row 18 · System note",
+        "text": "--- subtotal row exported from legacy macro ---",
+        "attended": false
+      }
+    ],
+    "steps": [
+      {
+        "id": "es1",
+        "label": "Read rows",
+        "detail": "5 exported spreadsheet rows from 2 travellers",
+        "durationLabel": "0.5s",
+        "reads": ["e1", "e2", "e3", "e4", "e5"],
+        "produces": []
+      },
+      {
+        "id": "es2",
+        "label": "Checked duplicates",
+        "detail": "Matched Row 14 and Row 15 (€118.40 on 12 Sept)",
+        "durationLabel": "0.7s",
+        "reads": ["e1", "e2"],
+        "produces": ["clean-totals", "duplicates"]
+      },
+      {
+        "id": "es3",
+        "label": "Audited receipts",
+        "detail": "Isolated Row 17 with missing currency and VAT slip",
+        "durationLabel": "0.6s",
+        "reads": ["e3", "e4"],
+        "produces": ["needs-review"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "clean-totals",
+        "title": "Verified expenses",
+        "segments": [
+          {
+            "text": "Approved €458.40 across two verified items: the €118.40 Berlin–Munich rail ticket and €340.00 hotel stay.",
+            "sources": ["e1", "e3"],
+            "claimType": "sourced",
+            "stepId": "es2"
+          }
+        ]
+      },
+      {
+        "id": "duplicates",
+        "title": "Merged duplicate",
+        "segments": [
+          {
+            "text": "Row 15 (€118.40 card import) duplicates Row 14 (Bahn receipt on the same date) and was excluded from the total.",
+            "sources": ["e1", "e2"],
+            "claimType": "inferred",
+            "stepId": "es2"
+          }
+        ]
+      },
+      {
+        "id": "needs-review",
+        "title": "Row held for check",
+        "segments": [
+          {
+            "text": "Row 17 ('195' for client dinner) has no currency symbol and no VAT receipt.",
+            "sources": ["e4"],
+            "claimType": "unknown",
+            "stepId": "es3"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "ec1",
+        "text": "Check: Row 17 writes '195' without a currency code or tax receipt; excluded from the €458.40 total.",
+        "relatedBlocks": ["e4"],
+        "conflictNote": "Row 14 and Row 15 use different date formats (YYYY-MM-DD vs DD/MM/YY) for the same train."
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "Row 18 legacy macro subtotal separator",
+        "reason": "Formatting row with no transaction data"
+      }
+    ],
+    "sampleRunSeconds": 2.8,
+    "sample": true
+  },
+  {
+    "id": "draft-reply",
+    "chipLabel": "Draft a calm reply",
+    "title": "Replying to a frustrated customer after a webhook delay",
+    "inputBlocks": [
+      {
+        "id": "r1",
+        "author": "D. Vance (customer)",
+        "text": "Your webhook queue stalled for 40 minutes this morning and our warehouse missed 18 packing slips. Nobody updated the status page.",
+        "attended": true
+      },
+      {
+        "id": "r2",
+        "author": "D. Vance (customer)",
+        "text": "I don't want a canned apology. Tell me what broke, whether the 18 slips replayed, and how we get alerted next time.",
+        "attended": true
+      },
+      {
+        "id": "r3",
+        "author": "Incident log #409",
+        "text": "08:12–08:51 UTC: EU webhook worker pool saturated after retry storm. All 18 queued events for acct_vance delivered at 08:53 UTC (200 OK).",
+        "attended": true
+      },
+      {
+        "id": "r4",
+        "author": "Ops note · K. Chen",
+        "text": "Status page threshold was set to 60 min by mistake; lowered to 5 min today. Still checking if warehouse printer dropped slip #18.",
+        "attended": true
+      }
+    ],
+    "steps": [
+      {
+        "id": "rs1",
+        "label": "Read context",
+        "detail": "2 customer messages + 2 internal incident notes",
+        "durationLabel": "0.5s",
+        "reads": ["r1", "r2", "r3", "r4"],
+        "produces": []
+      },
+      {
+        "id": "rs2",
+        "label": "Matched 3 questions",
+        "detail": "Mapped root cause, 18-slip delivery timestamp, and status page fix",
+        "durationLabel": "0.8s",
+        "reads": ["r2", "r3", "r4"],
+        "produces": ["draft-body", "tone-choices"]
+      },
+      {
+        "id": "rs3",
+        "label": "Checked unverified item",
+        "detail": "Flagged local printer check for slip #18 before sending",
+        "durationLabel": "0.5s",
+        "reads": ["r4"],
+        "produces": ["before-sending"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "draft-body",
+        "title": "Draft reply",
+        "segments": [
+          {
+            "text": "Between 08:12 and 08:51 UTC our EU webhook pool saturated during a retry storm, and all 18 queued slips were delivered with 200 OK at 08:53 UTC.",
+            "sources": ["r1", "r3"],
+            "claimType": "sourced",
+            "stepId": "rs2"
+          },
+          {
+            "text": "Our status page didn't update because the alert threshold was mistakenly set to 60 minutes; we lowered it to 5 minutes today.",
+            "sources": ["r1", "r4"],
+            "claimType": "sourced",
+            "stepId": "rs2"
+          }
+        ]
+      },
+      {
+        "id": "tone-choices",
+        "title": "Tone & structure note",
+        "segments": [
+          {
+            "text": "Skipped generic apology phrases as requested in message 2 and answered the three questions in the exact order asked.",
+            "sources": ["r2"],
+            "claimType": "inferred",
+            "stepId": "rs2"
+          }
+        ]
+      },
+      {
+        "id": "before-sending",
+        "title": "Verify before sending",
+        "segments": [
+          {
+            "text": "Ask the customer to confirm slip #18 printed locally, as Ops noted the warehouse printer state isn't visible in our logs.",
+            "sources": ["r4"],
+            "claimType": "unknown",
+            "stepId": "rs3"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "rc1",
+        "text": "Check: HTTP 200 OK at 08:53 UTC confirms webhook delivery, not whether the warehouse printer finished printing slip #18.",
+        "relatedBlocks": ["r3", "r4"],
+        "conflictNote": "Tone choice: kept direct, factual sentences with zero filler apologies."
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "Standard sign-offpleasantries ('We value your business')",
+        "reason": "Customer explicitly asked for no canned apology"
+      }
+    ],
+    "sampleRunSeconds": 2.9,
+    "sample": true
+  }
+]
+

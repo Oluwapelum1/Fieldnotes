@@ -1,0 +1,68 @@
+{
+  "sample": true,
+  "entries": [
+    {
+      "id": "rel-0-14-4",
+      "date": "2026-11-06",
+      "version": "v0.14.4",
+      "tag": "New",
+      "title": "Side-by-side conflict notes in thread summaries",
+      "summary": "When two people in a support thread state different facts before checking the audit log, the margin now links both messages together instead of picking the latest one silently.",
+      "sample": true
+    },
+    {
+      "id": "rel-0-14-3",
+      "date": "2026-11-01",
+      "version": "v0.14.3",
+      "tag": "Improved",
+      "title": "Keyboard navigation for source chip popovers",
+      "summary": "Pressing Enter on any source chip opens the quoted input line and scrolls the input pane into view; pressing Escape returns focus directly to the chip you opened.",
+      "sample": true
+    },
+    {
+      "id": "rel-0-14-2",
+      "date": "2026-10-28",
+      "version": "v0.14.2",
+      "tag": "Fixed",
+      "title": "Daylight-saving offset in March and October timestamps",
+      "summary": "Fixed a bug where audit log dates near the daylight-saving switch shifted by one hour when comparing messages across European and US timezones.",
+      "sample": true
+    },
+    {
+      "id": "rel-0-14-1",
+      "date": "2026-10-21",
+      "version": "v0.14.1",
+      "tag": "New",
+      "title": "Zero-day stateless run mode for Team and Business",
+      "summary": "Workspace admins can now set storage retention to 0 days so notebook outputs are streamed to the browser and downloadable as Markdown without touching disk storage.",
+      "sample": true
+    },
+    {
+      "id": "rel-0-14-0",
+      "date": "2026-10-14",
+      "version": "v0.14.0",
+      "tag": "Improved",
+      "title": "Ambiguous vendor rows flagged in spreadsheet cleanup",
+      "summary": "Spreadsheet runs now separate clean rows from rows with missing tax receipts or duplicate dates, placing uncertain rows in a red-pencil review group.",
+      "sample": true
+    },
+    {
+      "id": "rel-0-13-9",
+      "date": "2026-10-05",
+      "version": "v0.13.9",
+      "tag": "Fixed",
+      "title": "Firefox CSV export button when filenames contain spaces",
+      "summary": "Quoted Content-Disposition headers properly so downloading cleaned expense tables on Firefox no longer truncates filenames after the first space.",
+      "sample": true
+    },
+    {
+      "id": "rel-0-13-8",
+      "date": "2026-09-27",
+      "version": "v0.13.8",
+      "tag": "New",
+      "title": "Right-to-left notebook layout and Japanese line breaking",
+      "summary": "Mirrored the margin rule, step drawer, and curved arrows for Arabic workspaces, and tuned character streaming cadence for Japanese text.",
+      "sample": true
+    }
+  ]
+}

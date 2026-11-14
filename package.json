@@ -1,0 +1,40 @@
+{
+  "name": "fieldnotes",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Fieldnotes — A shown, sourced, and honest landing-page template for AI products and SaaS startups.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "tsx scripts/validate-config.ts && tsx scripts/lint-copy.ts && tsx scripts/check-sample-flags.ts && next build",
+    "start": "next start",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "validate:config": "tsx scripts/validate-config.ts",
+    "lint:copy": "tsx scripts/lint-copy.ts",
+    "check:samples": "tsx scripts/check-sample-flags.ts",
+    "check:all": "tsx scripts/validate-config.ts && tsx scripts/lint-copy.ts && tsx scripts/check-sample-flags.ts"
+  },
+  "dependencies": {
+    "motion": "^12.0.0",
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.1.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.0.2",
+    "@types/react-dom": "^19.0.2",
+    "axe-core": "^4.10.2",
+    "jsdom": "^25.0.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^4.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8",
+    "vitest-axe": "^0.1.0"
+  }
+}

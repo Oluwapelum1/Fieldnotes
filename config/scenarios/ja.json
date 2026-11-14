@@ -1,0 +1,292 @@
+[
+  {
+    "id": "thread-summary",
+    "chipLabel": "顧客スレッドを要約する",
+    "title": "追加1シート分の請求に関するサポートスレッド",
+    "inputBlocks": [
+      {
+        "id": "m1",
+        "author": "Maya (顧客)",
+        "text": "請求書が4シートになっていますが、購入したのは3シートだけです。あとエクスポートボタンがまた壊れています。",
+        "attended": true
+      },
+      {
+        "id": "m2",
+        "author": "Tom (サポート)",
+        "text": "すみませんMayaさん！請求チームに確認します。",
+        "attended": false
+      },
+      {
+        "id": "m3",
+        "author": "Maya (顧客)",
+        "text": "進捗はいかがですか？14日が契約更新日です。",
+        "attended": true
+      },
+      {
+        "id": "m4",
+        "author": "Tom (サポート)",
+        "text": "請求チームによると、3月に1シート追加されたため4シートで正しいとのことです。",
+        "attended": true
+      },
+      {
+        "id": "m5",
+        "author": "Maya (顧客)",
+        "text": "誰もシートを追加していません。監査ログを調べてください。それとFirefoxでエクスポートがまだ動きません。",
+        "attended": true
+      },
+      {
+        "id": "m6",
+        "author": "Priya (請求担当)",
+        "text": "判明しました。3月9日に j.ortiz さんが1シート追加していました。3月〜5月分の1シートを返金します。エクスポートの不具合は今週中に修正されます。",
+        "attended": true
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "label": "読み取り",
+        "detail": "3名による6件のメッセージ",
+        "durationLabel": "0.6s",
+        "reads": ["m1", "m2", "m3", "m4", "m5", "m6"],
+        "produces": []
+      },
+      {
+        "id": "s2",
+        "label": "トピック分類",
+        "detail": "シート請求の相違とFirefoxエクスポート不具合を分離",
+        "durationLabel": "0.5s",
+        "reads": ["m1", "m4", "m5", "m6"],
+        "produces": ["summary"]
+      },
+      {
+        "id": "s3",
+        "label": "決定事項の抽出",
+        "detail": "3ヶ月分の返金と今週中のバグ修正を特定",
+        "durationLabel": "0.7s",
+        "reads": ["m5", "m6"],
+        "produces": ["decisions"]
+      },
+      {
+        "id": "s4",
+        "label": "日付と未記載事項の確認",
+        "detail": "更新日14日、追加日3月9日、返金額の未記載を検出",
+        "durationLabel": "0.8s",
+        "reads": ["m3", "m4", "m6"],
+        "produces": ["open-questions"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "summary",
+        "title": "要約",
+        "segments": [
+          {
+            "text": "顧客は4シート分の請求に対し、1シート分の過剰請求を指摘しました。",
+            "sources": ["m1", "m5"],
+            "claimType": "sourced",
+            "stepId": "s2"
+          },
+          {
+            "text": "監査ログから3月9日に顧客チームの j.ortiz が1シート追加していたことが判明し、3ヶ月分の返金が決まりました。",
+            "sources": ["m6"],
+            "claimType": "sourced",
+            "stepId": "s2"
+          }
+        ]
+      },
+      {
+        "id": "decisions",
+        "title": "決定事項",
+        "segments": [
+          {
+            "text": "14日の更新日前に、3月〜5月分の1シートを返金する。",
+            "sources": ["m3", "m6"],
+            "claimType": "sourced",
+            "stepId": "s3"
+          },
+          {
+            "text": "Firefoxのエクスポート不具合を今週中に修正する。",
+            "sources": ["m5", "m6"],
+            "claimType": "sourced",
+            "stepId": "s3"
+          }
+        ]
+      },
+      {
+        "id": "open-questions",
+        "title": "未解決の質問",
+        "segments": [
+          {
+            "text": "3月9日に j.ortiz のシート追加を承認したのは誰か？",
+            "sources": ["m5", "m6"],
+            "claimType": "inferred",
+            "stepId": "s4"
+          },
+          {
+            "text": "3月〜5月分の具体的な返金金額はいくらか？",
+            "sources": ["m6"],
+            "claimType": "unknown",
+            "stepId": "s4"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "c1",
+        "text": "確認：具体的な返金額はスレッド内のどこにも記載されていません。",
+        "relatedBlocks": ["m6"],
+        "conflictNote": "Tomは監査ログを確認する前に「4シートで正しい」と回答していました。"
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "挨拶と確認中の短文（「確認します」など）",
+        "reason": "事実や決定事項を含まないため"
+      }
+    ],
+    "sampleRunSeconds": 3.1,
+    "sample": true
+  },
+  {
+    "id": "expense-cleanup",
+    "chipLabel": "経費シートを整理する",
+    "title": "出張経費スプレッドシートの重複と通貨漏れチェック",
+    "inputBlocks": [
+      {
+        "id": "e1",
+        "author": "14行目 · A. Lindqvist",
+        "text": "2026-09-12 | 鉄道チケット ベルリン–ミュンヘン | €118.40 | 領収書PDFあり",
+        "attended": true
+      },
+      {
+        "id": "e2",
+        "author": "15行目 · A. Lindqvist",
+        "text": "12/09/26 | DB Fernverkehr ベルリン | €118.40 | カード明細取込",
+        "attended": true
+      },
+      {
+        "id": "e3",
+        "author": "16行目 · M. Okafor",
+        "text": "2026-09-14 | ホテル・ヴィクトリア（2泊） | €340.00 | 朝食込み",
+        "attended": true
+      },
+      {
+        "id": "e4",
+        "author": "17行目 · M. Okafor",
+        "text": "2026-09-15 | 顧客会食（4名） | 195 | 通貨記号なし・税領収書なし",
+        "attended": true
+      }
+    ],
+    "steps": [
+      {
+        "id": "es1",
+        "label": "重複と領収書の照合",
+        "detail": "15行目の重複（€118.40）と17行目の通貨記号漏れを検出",
+        "durationLabel": "0.6s",
+        "reads": ["e1", "e2", "e3", "e4"],
+        "produces": ["clean-totals", "needs-review"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "clean-totals",
+        "title": "確認済み経費",
+        "segments": [
+          {
+            "text": "15行目の重複を除外し、鉄道€118.40と宿泊€340.00の計€458.40を承認対象としました。",
+            "sources": ["e1", "e2", "e3"],
+            "claimType": "sourced",
+            "stepId": "es1"
+          }
+        ]
+      },
+      {
+        "id": "needs-review",
+        "title": "要確認の行",
+        "segments": [
+          {
+            "text": "17行目（「195」）には通貨コードと領収書がありません。",
+            "sources": ["e4"],
+            "claimType": "unknown",
+            "stepId": "es1"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "ec1",
+        "text": "確認：17行目の「195」は通貨単位が不明なため合計から除外しています。",
+        "relatedBlocks": ["e4"]
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "マクロ出力の小計区切り行",
+        "reason": "取引データを含まないため"
+      }
+    ],
+    "sampleRunSeconds": 2.8,
+    "sample": true
+  },
+  {
+    "id": "draft-reply",
+    "chipLabel": "落ち着いた返信を下書きする",
+    "title": "Webhook遅延後の顧客への事実ベースの返信",
+    "inputBlocks": [
+      {
+        "id": "r1",
+        "author": "D. Vance (顧客)",
+        "text": "今朝Webhookが40分間止まり、出荷伝票18件が遅れました。定型文の謝罪は不要です。原因と18件の再送結果を教えてください。",
+        "attended": true
+      },
+      {
+        "id": "r2",
+        "author": "障害ログ #409",
+        "text": "08:12–08:51 UTC: EUワーカー飽和。18件すべて08:53 UTCに配信完了（200 OK）。ステータスページの通知閾値を60分から5分に修正。",
+        "attended": true
+      }
+    ],
+    "steps": [
+      {
+        "id": "rs1",
+        "label": "事実とトーンの整理",
+        "detail": "定型謝罪を省き、原因・08:53配信・閾値修正を回答",
+        "durationLabel": "0.6s",
+        "reads": ["r1", "r2"],
+        "produces": ["draft-body"]
+      }
+    ],
+    "outputCards": [
+      {
+        "id": "draft-body",
+        "title": "返信下書き",
+        "segments": [
+          {
+            "text": "08:12〜08:51 UTCにEUのWebhookプールが飽和しましたが、保留された18件はすべて08:53 UTCに200 OKで配信完了し、通知閾値を5分に短縮しました。",
+            "sources": ["r1", "r2"],
+            "claimType": "sourced",
+            "stepId": "rs1"
+          }
+        ]
+      }
+    ],
+    "caveats": [
+      {
+        "id": "rc1",
+        "text": "確認：200 OKはサーバー受信を示しますが、倉庫プリンターでの伝票#18の印刷完了は別途確認が必要です。",
+        "relatedBlocks": ["r2"]
+      }
+    ],
+    "leftOut": [
+      {
+        "text": "定型的なお詫び文",
+        "reason": "顧客が事実のみの回答を求めたため"
+      }
+    ],
+    "sampleRunSeconds": 2.9,
+    "sample": true
+  }
+]
+

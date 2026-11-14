@@ -1,0 +1,172 @@
+{
+  "sample": true,
+  "categories": ["Email", "Docs", "Chat", "CRM", "Storage"],
+  "items": [
+    {
+      "id": "int-mailroom",
+      "name": "Mailroom",
+      "category": "Email",
+      "glyph": "envelope-grid",
+      "reads": "Selected thread messages and timestamps",
+      "writes": "Draft replies only (never sends automatically)",
+      "needs": "Read/compose scope on the chosen mailbox",
+      "seed": 101,
+      "sample": true
+    },
+    {
+      "id": "int-postbox",
+      "name": "Postbox Relay",
+      "category": "Email",
+      "glyph": "tray-stack",
+      "reads": "Forwarded customer support threads",
+      "writes": "Internal note attachments",
+      "needs": "Webhook token for inbound forwards",
+      "seed": 102,
+      "sample": true
+    },
+    {
+      "id": "int-dispatch",
+      "name": "Dispatch Desk",
+      "category": "Email",
+      "glyph": "stamp-seal",
+      "reads": "Shared billing inbox messages",
+      "writes": "Tagged summary cards and draft responses",
+      "needs": "Shared inbox reader permission",
+      "seed": 103,
+      "sample": true
+    },
+    {
+      "id": "int-sheetly",
+      "name": "Sheetly",
+      "category": "Docs",
+      "glyph": "sheet-matrix",
+      "reads": "Selected spreadsheet rows and column headers",
+      "writes": "New audit column with flagged caveats",
+      "needs": "File-level access to spreadsheets you pick",
+      "seed": 201,
+      "sample": true
+    },
+    {
+      "id": "int-foliopad",
+      "name": "Foliopad",
+      "category": "Docs",
+      "glyph": "binder-tabs",
+      "reads": "Project briefs and meeting notes",
+      "writes": "Appends sourced decision tables",
+      "needs": "Read/write access to selected folder",
+      "seed": 202,
+      "sample": true
+    },
+    {
+      "id": "int-ledgerdoc",
+      "name": "LedgerDoc",
+      "category": "Docs",
+      "glyph": "ledger-lines",
+      "reads": "CSV and TSV expense exports",
+      "writes": "Cleaned export file with source row IDs",
+      "needs": "Single-file upload or folder link",
+      "seed": 203,
+      "sample": true
+    },
+    {
+      "id": "int-chatwell",
+      "name": "Chatwell",
+      "category": "Chat",
+      "glyph": "signal-wave",
+      "reads": "Public channel threads where @fieldnotes is mentioned",
+      "writes": "Thread summary reply with message links",
+      "needs": "Bot invite to specific channels",
+      "seed": 301,
+      "sample": true
+    },
+    {
+      "id": "int-campfire",
+      "name": "Campfire Rooms",
+      "category": "Chat",
+      "glyph": "thread-knot",
+      "reads": "Incident room logs selected by an operator",
+      "writes": "Post-incident timeline draft",
+      "needs": "Read-only room token",
+      "seed": 302,
+      "sample": true
+    },
+    {
+      "id": "int-switchboard",
+      "name": "Switchboard",
+      "category": "Chat",
+      "glyph": "relay-ring",
+      "reads": "Customer handoff threads",
+      "writes": "Checklist of open questions",
+      "needs": "Channel-scoped OAuth sign-in",
+      "seed": 303,
+      "sample": true
+    },
+    {
+      "id": "int-pipeline",
+      "name": "Pipeline CRM",
+      "category": "CRM",
+      "glyph": "funnel-prism",
+      "reads": "Account notes and renewal dates",
+      "writes": "Draft call summary linked to source emails",
+      "needs": "Standard user sign-in with note permissions",
+      "seed": 401,
+      "sample": true
+    },
+    {
+      "id": "int-accountbook",
+      "name": "AccountBook",
+      "category": "CRM",
+      "glyph": "contact-card",
+      "reads": "Seat count history and invoice line items",
+      "writes": "Billing discrepancy note for review",
+      "needs": "Read-only billing view + note creation",
+      "seed": 402,
+      "sample": true
+    },
+    {
+      "id": "int-wayfinder",
+      "name": "Wayfinder Deals",
+      "category": "CRM",
+      "glyph": "deal-compass",
+      "reads": "Support ticket history attached to renewals",
+      "writes": "Renewal risk summary card",
+      "needs": "Ticket and deal read scope",
+      "seed": 403,
+      "sample": true
+    },
+    {
+      "id": "int-vaultbox",
+      "name": "Vaultbox",
+      "category": "Storage",
+      "glyph": "vault-cube",
+      "reads": "Text and CSV files in a designated drop folder",
+      "writes": "JSON and Markdown notebook exports",
+      "needs": "Single-folder scoped token",
+      "seed": 501,
+      "sample": true
+    },
+    {
+      "id": "int-cratedrive",
+      "name": "CrateDrive",
+      "category": "Storage",
+      "glyph": "archive-crate",
+      "reads": "Archived support transcripts",
+      "writes": "Indexed citation bundles",
+      "needs": "Read access to archive bucket",
+      "seed": 502,
+      "sample": true
+    },
+    {
+      "id": "int-harbour",
+      "name": "Harbour S3",
+      "category": "Storage",
+      "glyph": "bucket-cylinder",
+      "reads": "Daily billing log exports",
+      "writes": "Signed audit summaries",
+      "needs": "IAM role restricted to one prefix",
+      "seed": 503,
+      "sample": true
+    }
+  ]
+}
+

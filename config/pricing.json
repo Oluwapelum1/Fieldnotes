@@ -1,0 +1,122 @@
+{
+  "baseCurrency": "USD",
+  "yearlyDiscountPercent": 20,
+  "taxNotice": "Prices exclude VAT or sales tax where they apply. You'll see the full price before you pay.",
+  "freePlanLimits": [
+    "Up to 40 notebook runs per month (resets on the 1st)",
+    "Single-user workspace with 7-day notebook history",
+    "Includes all source chips, caveat brackets, and CSV/Markdown export"
+  ],
+  "cancellationPolicy": "Cancel in two clicks from Settings → Billing. No phone calls, no exit survey required.",
+  "refundPolicy": "Starts at 19 dollars a month on Team. We'll refund the current month if you ask within 14 days.",
+  "sample": true,
+  "plans": [
+    {
+      "id": "free",
+      "name": "Free",
+      "monthlyPricePerUser": 0,
+      "whoItsFor": "For one person testing Fieldnotes on real weekly tasks before inviting a team.",
+      "features": [
+        "40 notebook runs a month",
+        "1 seat included",
+        "7-day saved run history",
+        "All source chips & caveat checks",
+        "Export runs to Markdown or CSV"
+      ],
+      "ctaLabel": "Start free",
+      "mostTeamsStartHere": false,
+      "sample": true
+    },
+    {
+      "id": "team",
+      "name": "Team",
+      "monthlyPricePerUser": 19,
+      "whoItsFor": "For support, ops, and finance teams that share notebooks and check each other's sources.",
+      "features": [
+        "500 notebook runs per person a month",
+        "Up to 50 seats in shared folders",
+        "30-day saved run history (or 0-day stateless)",
+        "Email, Docs, and Chat integrations",
+        "Shared comment margin & source links"
+      ],
+      "ctaLabel": "Try Team free for 14 days",
+      "mostTeamsStartHere": false,
+      "sample": true
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "monthlyPricePerUser": 49,
+      "whoItsFor": "For larger organisations that need regional data pinning, CRM/Storage connectors, and audit logs.",
+      "features": [
+        "2,500 notebook runs per person a month",
+        "Unlimited seats & role permissions",
+        "Custom retention (0 to 90 days) in EU, US, or Japan",
+        "All 15 integrations including CRM & Storage",
+        "SAML SSO and exportable workspace audit log"
+      ],
+      "ctaLabel": "Start Business trial",
+      "mostTeamsStartHere": false,
+      "sample": true
+    }
+  ],
+  "comparisonRows": [
+    {
+      "feature": "Monthly runs per person",
+      "values": {
+        "free": "40 runs",
+        "team": "500 runs",
+        "business": "2,500 runs"
+      }
+    },
+    {
+      "feature": "Source chips & caveat brackets",
+      "values": {
+        "free": "Included",
+        "team": "Included",
+        "business": "Included"
+      }
+    },
+    {
+      "feature": "Show-your-work step trace",
+      "values": {
+        "free": "Included",
+        "team": "Included",
+        "business": "Included"
+      }
+    },
+    {
+      "feature": "Saved notebook retention",
+      "values": {
+        "free": "7 days",
+        "team": "30 days (or 0-day)",
+        "business": "0 to 90 days configurable"
+      }
+    },
+    {
+      "feature": "Regional data pinning (EU / US / JP)",
+      "values": {
+        "free": "Not included",
+        "team": "Included",
+        "business": "Included"
+      }
+    },
+    {
+      "feature": "CRM & cloud storage connectors",
+      "values": {
+        "free": "Not included",
+        "team": "Not included",
+        "business": "Included"
+      }
+    },
+    {
+      "feature": "SAML single sign-on & audit log",
+      "values": {
+        "free": "Not included",
+        "team": "Not included",
+        "business": "Included"
+      }
+    }
+  ]
+}
+

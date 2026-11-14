@@ -1,0 +1,52 @@
+{
+  "lastReviewedDate": "2026-11-04",
+  "sample": true,
+  "entries": [
+    {
+      "id": "lim-handwriting",
+      "limitation": "Cannot read scanned PDFs or photos of handwritten receipts.",
+      "checkWhen": "A thread or expense batch includes image attachments or camera scans.",
+      "workaround": "Run optical character recognition (OCR) before pasting, or attach plain-text exports.",
+      "status": "Limitation",
+      "lastReviewed": "2026-11-04",
+      "sample": true
+    },
+    {
+      "id": "lim-implicit-currency",
+      "limitation": "Assumes bare numbers in a single thread share the same currency unless a symbol is written.",
+      "checkWhen": "Customers from two countries quote prices without currency codes (e.g. '40' vs '$40').",
+      "workaround": "Write the three-letter currency code (USD, EUR, JPY) in the prompt or first line.",
+      "status": "Limitation",
+      "lastReviewed": "2026-11-04",
+      "sample": true
+    },
+    {
+      "id": "lim-long-threads",
+      "limitation": "Truncates threads longer than 80 messages to the first 10 and most recent 70 messages.",
+      "checkWhen": "Summarising multi-month enterprise tickets with more than 80 replies.",
+      "workaround": "Split the ticket by quarter or export only the billing sub-thread.",
+      "status": "Planned",
+      "lastReviewed": "2026-11-04",
+      "sample": true
+    },
+    {
+      "id": "lim-sarcasm-tone",
+      "limitation": "Can misread dry sarcasm as literal agreement in frustrated customer emails.",
+      "checkWhen": "A customer writes short replies with exclamation marks after an outage.",
+      "workaround": "Read the highlighted source line yourself whenever a tone note appears in the margin.",
+      "status": "Limitation",
+      "lastReviewed": "2026-11-04",
+      "sample": true
+    },
+    {
+      "id": "lim-timezone-dst",
+      "limitation": "Previously shifted timestamps by one hour across daylight-saving transition weeks.",
+      "checkWhen": "Checking audit log dates from late March or late October.",
+      "workaround": "Resolved in v0.14.2 by preserving original ISO offsets from message headers.",
+      "status": "Fixed",
+      "lastReviewed": "2026-10-28",
+      "sample": true
+    }
+  ]
+}
+
